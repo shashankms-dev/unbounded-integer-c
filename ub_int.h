@@ -10,12 +10,12 @@ typedef struct unbounded_integer {
 } ubint_t;
 
 // Constructor for ubint_t
-ubint_t ubint_constructor(uint8_t sign, uint64_t size, ...);
+ubint_t ub_constructor(uint8_t sign, uint64_t size, ...);
 
 // Destructor for ubint_t
-void ubint_destructor(ubint_t *number);
+void ub_destructor(ubint_t *number);
 
 // Print given ubint_teger
-void ubint_print(ubint_t number);
+void ub_print(ubint_t number);
 
 #endif
