@@ -1,4 +1,4 @@
-#include "ub_int.h"
+#include "ubint.h"
 #include <stdio.h>
 
 void ub_print(ubint_t number) {

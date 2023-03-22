@@ -1,10 +1,10 @@
-#include "ub_int.h"
+#include "ubint.h"
 #include <stdint.h>
 #include <stdarg.h>
 #include <stdlib.h>
 
-ubint_t ub_constructor(uint8_t sign, uint64_t size, ...) {
-	ubint_t number;
+ubint ub_constructor(uint8_t sign, uint64_t size, ...) {
+	ubint number;
 	number.blocks = (uint64_t *)malloc(sizeof(uint64_t[size]));
 
 	va_list blocks;
@@ -19,6 +19,6 @@ ubint_t ub_constructor(uint8_t sign, uint64_t size, ...) {
 	return number;
 }
 
-void ub_destructor(ubint_t *number) {
+void ub_destructor(ubint *number) {
 	free(number->blocks);
 }
