@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include "ubint.h"
 
-ubint ub_constructor(bool sign, uint64_t nblocks, ...) {
+ubint *ub_constructor(uint8_t sign, uint64_t nblocks, ...) {
 	ubint *number;
 	number->blocks = (uint64_t *)malloc(sizeof(uint64_t[nblocks]));
 
