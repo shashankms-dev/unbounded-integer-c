@@ -9,10 +9,12 @@ typedef struct unbounded_integer {
 	uint8_t sign;
 } ubint;
 
-ubint *ub_constructor(uint8_t sign, uint64_t nblocks, ...);
+ubint *ub_constructor(uint8_t, uint64_t, ...);
 
-void ub_destructor(ubint *number);
+void ub_destructor(ubint *);
 
-void ub_print(ubint *number);
+ubint *ub_string(char *);
+
+void ub_print(ubint *);
 
 #endif
