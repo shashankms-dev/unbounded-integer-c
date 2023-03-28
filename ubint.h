@@ -5,7 +5,7 @@
 
 typedef struct unbounded_integer {
 	uint64_t *blocks;
-	uint64_t nblocks;
+	uint64_t n_blocks;
 	uint8_t sign;
 } ubint;
 

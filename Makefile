@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-Wall -O2
+CFLAGS=-Wall -Wextra -g -lm
 TARGET=ubint
 
 $(TARGET): *.c
