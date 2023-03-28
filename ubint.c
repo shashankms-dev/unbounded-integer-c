@@ -44,7 +44,7 @@ ubint *ub_string(char *num_string) {
 		n_digits -= 1;
 	}
 
-	n_blocks = n_digits / 19;
+	n_blocks = (uint64_t)ceill((long double)n_digits / 19);
 	
 	number->blocks = (uint64_t *)malloc(sizeof(uint64_t[n_blocks]));
 	number->n_blocks = n_blocks;

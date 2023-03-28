@@ -8,5 +8,6 @@ int main(int argc, char *argv[]) {
 	}
 	ubint *number = ub_string(argv[1]);
 	ub_print(number);
+	printf("\n");
 	ub_destructor(number);
 }
