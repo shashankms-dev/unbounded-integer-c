@@ -42,6 +42,8 @@ ubint *ub_string(char *num_string) {
 		n_digits -= 1;
 	}
 
+	printf("n_digits = %lu \n", n_digits);
+
 	n_blocks = (uint64_t)ceill((long double)n_digits / 19);
 	
 	number->blocks = (uint64_t *)malloc(sizeof(uint64_t[n_blocks]));
@@ -54,9 +56,9 @@ ubint *ub_string(char *num_string) {
 	uint8_t break_flag = 0;
 
 	while(break_flag == 0) {
-		for(int i = 0; i < 20 && break_flag == 0; i++) {
+		for(int i = 0; num <= 0xffffffffffffffff && break_flag == 0; i++) {
 			if (pos == 0) break_flag = 1;
-			num += (unsigned)(num_string[pos--] - '0') * (unsigned __int128)pow(10, i);
+			num += (unsigned __int128)( (num_string[pos--] - '0') * powl(10, i) );
 		}
 		block = (uint64_t)(num & 0xffffffffffffffff);
 		printf("block[%lu] => %lu \n", index, block);
@@ -71,7 +73,8 @@ void ub_print(ubint *number) {
 	if(number->sign)
 		printf("-");
 
-	for(uint64_t i = 0; i < number->n_blocks; i++) {
+	printf("%lu", number->blocks[0]);
+	for(uint64_t i = 1; i < number->n_blocks; i++) {
 		if(number->blocks[i] != 0) {
 			printf("%020lu", number->blocks[i]);
 		}
