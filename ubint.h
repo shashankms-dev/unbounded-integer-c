@@ -17,4 +17,13 @@ ubint *ub_string(char *);
 
 void ub_print(ubint *);
 
+// Arithmetic operations on unbounded integers
+ubint *ub_add(ubint *, ubint *);
+
+ubint *ub_subtract(ubint *, ubint *);
+
+ubint *ub_multiply(ubint *, ubint *);
+
+ubint *ub_divide(ubint *, ubint *);
+
 #endif
