@@ -31,16 +31,13 @@ void ub_destructor(ubint *number) {
 uint64_t ub_pow(uint32_t index) {
 	uint64_t res = 1;
 	for(; index > 0; index--) {
-		res *= 10;
+		res = (res << 3) + (res << 1);
 	}
 	return res;
 }
 
 ubint *ub_string(char *num_string) {
-	ubint *number;
-	uint64_t n_blocks;
-
-	number = (ubint *)malloc(sizeof(ubint));
+	ubint *number = (ubint *)malloc(sizeof(ubint));
 
 	uint64_t n_digits = strlen(num_string);
 	
@@ -49,31 +46,30 @@ ubint *ub_string(char *num_string) {
 		num_string++;
 		n_digits -= 1;
 	}
+	else {
+		number->sign = 0;
+	}
 
-	printf("n_digits = %lu \n", n_digits);
-
-	n_blocks = (uint64_t)ceill((long double)n_digits / 9.632);
-	
-	number->blocks = (uint32_t *)malloc(sizeof(uint32_t[n_blocks]));
-	number->n_blocks = n_blocks;
+	number->n_blocks = (uint64_t)ceill((long double)n_digits / 9.632);
+	number->blocks = (uint32_t *)malloc(sizeof(uint32_t[number->n_blocks]));
 
 	uint64_t pos = n_digits - 1;
-	uint64_t num = 0, index = n_blocks - 1;
+	uint64_t tmp = 0, index = number->n_blocks - 1;
 	uint32_t block;
 	uint8_t break_flag = 0;
 
 	while(break_flag == 0) {
-		for(uint32_t i = 0; num < 0xffffffff && break_flag == 0; i++) {
+		for(uint32_t i = 0; tmp < 0xffffffff && break_flag == 0; i++) {
 			if (pos == 0) {
 				break_flag = 1;
 			}
-			num += (uint64_t)((num_string[pos--] - '0') * ub_pow(i));
-			printf("pos = %2lu, digit = %u, num = %15lu, pow(%2u) = %15lu \n", pos+1, (num_string[pos+1] - '0'), num, i, ub_pow(i));
+			tmp += (uint64_t)((num_string[pos--] - '0') * ub_pow(i));
+			printf("tmp = %016lx \n", tmp);
 		}
-		block = num;
-		printf("block[%lu] => %u \n", index, block);
+		block = (uint32_t)(tmp & 0xffffffff);
+		printf("block[%lu] => %08x \n", index, block);
 		number->blocks[index--] = block;
-		num = num >> 32;
+		tmp = tmp >> 32;
 	}
 	return number;
 }
@@ -82,10 +78,10 @@ void ub_print(ubint *number) {
 	if(number->sign)
 		printf("-");
 
-	printf("%u", number->blocks[0]);
+	printf("%08x", number->blocks[0]);
 	for(uint64_t i = 1; i < number->n_blocks; i++) {
 		if(number->blocks[i] != 0) {
-			printf("%010u", number->blocks[i]);
+			printf("%08x", number->blocks[i]);
 		}
 	}
 }
