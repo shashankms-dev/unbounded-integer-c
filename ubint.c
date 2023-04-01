@@ -51,6 +51,7 @@ ubint *ub_string(char *num_string) {
 	}
 
 	number->n_blocks = (uint64_t)ceill((long double)n_digits / 9.632);
+	printf("n_blocks = %lu \n", number->n_blocks);
 	number->blocks = (uint32_t *)malloc(sizeof(uint32_t[number->n_blocks]));
 
 	uint64_t pos = n_digits - 1;
@@ -58,19 +59,25 @@ ubint *ub_string(char *num_string) {
 	uint32_t block;
 	uint8_t break_flag = 0;
 
-	while(break_flag == 0) {
-		for(uint32_t i = 0; tmp < 0xffffffff && break_flag == 0; i++) {
-			if (pos == 0) {
-				break_flag = 1;
+	
+/* BUGGY BLOCK
+	while(break_flag < 2) {
+		for(uint32_t i = 0; tmp < 0xffffffff && break_flag < 2; i++) {
+			if(pos == 0) {
+				break_flag++;
 			}
-			tmp += (uint64_t)((num_string[pos--] - '0') * ub_pow(i));
-			printf("tmp = %016lx \n", tmp);
+			else {
+				tmp += (uint64_t)((num_string[pos--] - '0') * ub_pow(i));
+				printf("tmp = %016lx \n", tmp);
+			}
 		}
 		block = (uint32_t)(tmp & 0xffffffff);
 		printf("block[%lu] => %08x \n", index, block);
 		number->blocks[index--] = block;
 		tmp = tmp >> 32;
 	}
+*/
+
 	return number;
 }
 
