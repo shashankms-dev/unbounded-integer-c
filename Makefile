@@ -1,9 +1,10 @@
 CC=gcc
 CFLAGS=-Wall -Wextra -g -lm
-TARGET=ubint
+EXEC=ubint
 
-$(TARGET): *.c
+$(EXEC): *.c
 	$(CC) $(CFLAGS) $^ -o $@
 
 clean:
-	$(RM) $(TARGET)
+	rm -f *.o
+	rm -f $(EXEC)
