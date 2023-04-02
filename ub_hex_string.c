@@ -23,7 +23,7 @@ ubint *ub_hex_string(char *num_string) {
 
     uint64_t pos = n_digits;
     uint64_t index = number->n_blocks - 1;
-    uint32_t block;
+    uint32_t block = 0;
     uint32_t digit;
     uint32_t value, shift = 0;
 
@@ -45,6 +45,7 @@ ubint *ub_hex_string(char *num_string) {
     
         if(shift == 0 || pos == 0) {
             number->blocks[index--] = block;
+            block = 0;
         }
     }
 
