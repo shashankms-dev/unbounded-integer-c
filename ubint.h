@@ -15,6 +15,8 @@ void ub_destructor(ubint *);
 
 ubint *ub_string(char *);
 
+ubint *ub_hex_string(char *);
+
 void ub_print(ubint *);
 
 // Arithmetic operations on unbounded integers

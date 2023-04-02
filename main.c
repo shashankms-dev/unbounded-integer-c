@@ -6,7 +6,7 @@ int main(int argc, char *argv[]) {
 		printf("Usage: %s <large_number> \n", argv[0]);
 		return -1;
 	}
-	ubint *number = ub_string(argv[1]);
+	ubint *number = ub_hex_string(argv[1]);
 	ub_print(number);
 	printf("\n");
 	ub_destructor(number);
