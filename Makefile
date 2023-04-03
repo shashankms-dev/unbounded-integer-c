@@ -1,21 +1,20 @@
-CC=gcc
 CFLAGS=-Wall -Wextra -g -lm
-SRC_DIR=src
-INSTALL_DIR=/usr/lib64
-EXEC=test
 LIB=libubint.so
 
-all: $(LIB) $(EXEC)
+SRC_DIR=src
+INSTALL_DIR=/usr/lib64
+
+all: $(LIB) test
 
 $(LIB): $(SRC_DIR)/*.c
 	$(CC) $(CFLAGS) -fPIC -shared $^ -lc -o $@
 
-$(EXEC): *.c
+test: *.c
 	$(CC) $(CFLAGS) -L. -lubint $^ -o $@
 
 clean:
 	rm -f *.o *.so
-	rm -f $(EXEC)
+	rm -f test
 
 install:
 	cp $(LIB) $(INSTALL_DIR)
