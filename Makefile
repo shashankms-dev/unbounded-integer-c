@@ -1,14 +1,16 @@
 CC=gcc
 CFLAGS=-Wall -Wextra -g -lm
+SRC_DIR=src
+INSTALL_DIR=/usr/lib64
 EXEC=ubint
 LIB=libubint.so
 
 all: $(LIB) $(EXEC)
 
-$(LIB): ubint.h ub*.c
+$(LIB): $(SRC_DIR)/*.c
 	$(CC) $(CFLAGS) -fPIC -shared $^ -lc -o $@
 
-$(EXEC): main.c
+$(EXEC): *.c
 	$(CC) $(CFLAGS) -L. -lubint $^ -o $@
 
 clean:
@@ -16,4 +18,7 @@ clean:
 	rm -f $(EXEC)
 
 install:
-	cp $(LIB) /lib64
+	cp $(LIB) $(INSTALL_DIR)
+
+uninstall:
+	rm -f $(INSTALL_DIR)/$(LIB)
