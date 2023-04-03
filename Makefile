@@ -2,7 +2,7 @@ CC=gcc
 CFLAGS=-Wall -Wextra -g -lm
 SRC_DIR=src
 INSTALL_DIR=/usr/lib64
-EXEC=ubint
+EXEC=test
 LIB=libubint.so
 
 all: $(LIB) $(EXEC)
