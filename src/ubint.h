@@ -19,7 +19,10 @@ ubint *ub_hex_string(char *);
 
 void ub_print(ubint *);
 
-// Arithmetic operations on unbounded integers
+int ub_compare(ubint *, ubint *);
+
+int ub_abscompare(ubint *, ubint *);
+
 ubint *ub_add(ubint *, ubint *);
 
 ubint *ub_subtract(ubint *, ubint *);
