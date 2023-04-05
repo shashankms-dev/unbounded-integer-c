@@ -1,12 +1,12 @@
 CFLAGS=-Wall -Wextra -g -lm
 LIB=libubint.so
 
-SRC_DIR=src
+SOURCE_DIR=src
 INSTALL_DIR=/usr/lib64
 
 all: $(LIB) test
 
-$(LIB): $(SRC_DIR)/*.c
+$(LIB): $(SOURCE_DIR)/*.c
 	$(CC) $(CFLAGS) -fPIC -shared $^ -lc -o $@
 
 test: *.c
