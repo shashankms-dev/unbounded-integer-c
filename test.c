@@ -3,14 +3,27 @@
 #include "src/ubint.h"
 
 int main(int argc, char *argv[]) {
-    if(argc < 2) {
-        printf("Usage: %s <large_number> \n", argv[0]);
+    if(argc < 3) {
+        printf("Usage: %s <large_number_1> <large_number_2> \n", argv[0]);
         return EXIT_FAILURE;
     }
 
-    ubint *number = ub_hex_string(argv[1]);
+    ubint *num1 = ub_hex_string(argv[1]);
+    ubint *num2 = ub_hex_string(argv[2]);
     
-    ub_print(number);
+    ubint *res = ub_add(num1, num2);
+
+    ub_print(num1);
     printf("\n");
-    ub_destructor(number);
+    
+    ub_print(num2);
+    printf("\n");
+    
+    ub_print(res);
+    printf("\n");
+
+    ub_destructor(num1);
+    ub_destructor(num2);
+    ub_destructor(res);
+
 }
