@@ -18,11 +18,11 @@ ubint *ub_hex_string(char *num_string) {
         number->sign = 0;
     }
 
-    number->n_blocks = ceill((long double) n_digits / 8);
-    number->blocks = malloc(sizeof( uint32_t[number->n_blocks] ));
+    number->length = ceill((long double) n_digits / 8);
+    number->blocks = malloc(sizeof( uint32_t[number->length] ));
 
     uint64_t pos = n_digits;
-    uint64_t index = number->n_blocks - 1;
+    uint64_t index = number->length - 1;
     uint32_t block = 0;
     uint32_t digit;
     uint32_t value, shift = 0;

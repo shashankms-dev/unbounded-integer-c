@@ -14,7 +14,7 @@ uint64_t ub_pow(uint32_t index) {
 }
 
 ubint *ub_string(char *num_string) {
-    ubint *number = malloc( sizeof(ubint) );
+    ubint *number = malloc(sizeof(ubint));
 
     uint64_t n_digits = strlen(num_string);
 
@@ -27,11 +27,11 @@ ubint *ub_string(char *num_string) {
         number->sign = 0;
     }
 
-    number->n_blocks = ceill( (long double)n_digits / 9.632 );
-    number->blocks = malloc( sizeof(uint32_t[number->n_blocks]) );
+    number->length = ceill((long double) n_digits / 9.632);
+    number->blocks = malloc(sizeof( uint32_t[number->length] ));
 
     uint64_t pos = n_digits;
-    uint64_t tmp = 0, index = number->n_blocks - 1;
+    uint64_t tmp = 0, index = number->length - 1;
     uint32_t block;
 
     for(uint32_t i = 0; pos > 0; i++) {

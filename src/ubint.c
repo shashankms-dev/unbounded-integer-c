@@ -3,36 +3,36 @@
 #include <stdlib.h>
 #include "ubint.h"
 
-ubint *ub_constructor(uint8_t sign, uint64_t n_blocks, ...) {
-    ubint *number;
-    number = malloc( sizeof(ubint) );
-    number->blocks = malloc( sizeof(uint32_t[n_blocks]) );
-    
+ubint *ub_constructor(uint8_t sign, uint64_t length, ...) {
+    ubint *num;
+    num = malloc(sizeof(ubint));
+    num->sign = sign;
+    num->length = length;
+    num->blocks = malloc(sizeof( uint32_t[num->length] ));
+
     va_list blocks;
-    va_start(blocks, n_blocks);
+    va_start(blocks, length);
     
-    for(uint64_t i = 0; i < n_blocks; i++) {
-    	number->blocks[i] = va_arg(blocks, uint32_t);
+    for(uint64_t i = 0; i < length; i++) {
+    	num->blocks[i] = va_arg(blocks, uint32_t);
     }
-    number->sign = sign;
-    number->n_blocks = n_blocks;
     
-    return number;
+    return num;
 }
 
-void ub_destructor(ubint *number) {
-    free(number->blocks);
-    free(number);
+void ub_destructor(ubint *num) {
+    free(num->blocks);
+    free(num);
 }
 
 ubint *ub_clone(ubint *num) {
-    ubint *new = malloc(sizeof(ubint));
-    new->sign = num->sign;
-    new->n_blocks = num->n_blocks;
-    new->blocks = malloc(sizeof(uint32_t[new->n_blocks]));
-    for(uint64_t i = 0; i < num->n_blocks; i++) {
-        new->blocks[i] = num->blocks[i];
+    ubint *copy = malloc(sizeof(ubint));
+    copy->sign = num->sign;
+    copy->length = num->length;
+    copy->blocks = malloc(sizeof( uint32_t[copy->length] ));
+    for(uint64_t i = 0; i < num->length; i++) {
+        copy->blocks[i] = num->blocks[i];
     }
 
-    return new;
+    return copy;
 }
