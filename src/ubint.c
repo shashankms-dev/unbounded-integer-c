@@ -25,3 +25,14 @@ void ub_destructor(ubint *number) {
     free(number);
 }
 
+ubint *ub_clone(ubint *num) {
+    ubint *new = malloc(sizeof(ubint));
+    new->sign = num->sign;
+    new->n_blocks = num->n_blocks;
+    new->blocks = malloc(sizeof(uint32_t[new->n_blocks]));
+    for(uint64_t i = 0; i < num->n_blocks; i++) {
+        new->blocks[i] = num->blocks[i];
+    }
+
+    return new;
+}
