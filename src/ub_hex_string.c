@@ -5,24 +5,24 @@
 #include "ubint.h"
 
 ubint *ub_hex_string(char *num_string) {
-    ubint *number = malloc( sizeof(ubint) );
+    ubint *num = malloc( sizeof(ubint) );
 
     uint64_t n_digits = strlen(num_string);
 
     if(num_string[0] == '-') {
-        number->sign = 1;
+        num->sign = 1;
         num_string++;
         n_digits -= 1;
     }
     else {
-        number->sign = 0;
+        num->sign = 0;
     }
 
-    number->length = ceill((long double) n_digits / 8);
-    number->blocks = malloc(sizeof( uint32_t[number->length] ));
+    num->length = ceill((long double) n_digits / 8);
+    num->blocks = malloc(sizeof( uint32_t[num->length] ));
 
     uint64_t pos = n_digits;
-    uint64_t index = number->length - 1;
+    uint64_t index = num->length - 1;
     uint32_t block = 0;
     uint32_t digit;
     uint32_t value, shift = 0;
@@ -44,11 +44,11 @@ ubint *ub_hex_string(char *num_string) {
         shift = (shift + 1) % 8;
     
         if(shift == 0 || pos == 0) {
-            number->blocks[index--] = block;
+            num->blocks[index--] = block;
             block = 0;
         }
     }
 
-    return number;
+    return num;
 }
 
