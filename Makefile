@@ -17,7 +17,7 @@ clean:
 	rm -f test
 
 install:
-	cp $(LIB) $(INSTALL_DIR)
+	cp -f $(LIB) $(INSTALL_DIR)
 
 uninstall:
 	rm -f $(INSTALL_DIR)/$(LIB)
