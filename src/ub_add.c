@@ -1,5 +1,4 @@
 #include <stdint.h>
-#include <stdlib.h>
 #include "ubint.h"
 
 ubint *ub_add(ubint *num1, ubint *num2) {
