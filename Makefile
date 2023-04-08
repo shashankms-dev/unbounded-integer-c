@@ -9,8 +9,8 @@ all: $(LIB) test
 $(LIB): $(SOURCE_DIR)/*.c
 	$(CC) $(CFLAGS) -fPIC -shared $^ -lc -o $@
 
-test: *.c
-	$(CC) $(CFLAGS) -L. -lubint $^ -o $@
+test: *.c $(SOURCE_DIR)/*.c
+	$(CC) $(CFLAGS) $^ -o $@
 
 clean:
 	rm -f *.o *.so
