@@ -9,14 +9,11 @@ ubint *ub_add(ubint *num1, ubint *num2) {
         res = ub_abssubtract(num1, num2);
         cmp = ub_abscompare(num1, num2);
         
-        if(cmp == 1) {
-            res->sign = num1->sign;
-        }
-        else if(cmp == -1) {
-            res->sign = num2->sign;
+        if(num1->sign) {
+            res->sign = (cmp == 1) ? 1 : 0;
         }
         else {
-            return res;
+            res->sign = (cmp == -1) ? 1 : 0;
         }
     }
     else {
