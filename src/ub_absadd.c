@@ -20,7 +20,7 @@ ubint *ub_absadd(ubint *num1, ubint *num2) {
         block1 = (iter1 > 0) ? num1->blocks[--iter1] : 0;
         block2 = (iter2 > 0) ? num2->blocks[--iter2] : 0;
 
-        buffer = block1 + block2 + carry;
+        buffer = (uint64_t) block1 + block2 + carry;
         res->blocks[--iter] = (uint32_t) buffer;
         carry = buffer >> 32;
 
