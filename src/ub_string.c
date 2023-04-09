@@ -34,6 +34,7 @@ ubint *ub_string(char *num_string) {
     uint64_t tmp = 0, index = num->length - 1;
     uint32_t block;
 
+/* BUGGY BLOCK
     for(uint32_t i = 0; pos > 0; i++) {
         tmp += (num_string[--pos] - '0') * ub_pow(i);
         if(tmp >= 0xffffffff) {
@@ -48,7 +49,7 @@ ubint *ub_string(char *num_string) {
             break;
         }
     }
-
+*/
     return num;
 }
 
