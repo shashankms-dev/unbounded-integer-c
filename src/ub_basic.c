@@ -1,6 +1,7 @@
+#include <stdio.h>
+#include <stdlib.h>
 #include <stdint.h>
 #include <stdarg.h>
-#include <stdlib.h>
 #include "ubint.h"
 
 ubint *ub_create(uint8_t sign, uint64_t length, ...) {
@@ -35,4 +36,20 @@ ubint *ub_clone(ubint *num) {
     }
 
     return clone;
+}
+
+void ub_print(ubint *num) {
+    uint64_t i;
+
+    if(num->sign)
+        printf("-");
+
+    for(i = 0; i < num->length; i++) {
+        if(num->blocks[i] != 0)
+            break;
+    }
+
+    for(; i < num->length; i++) {
+        printf("%08x", num->blocks[i]);
+    }
 }
