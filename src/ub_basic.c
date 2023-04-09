@@ -43,17 +43,25 @@ ubint *ub_clone(ubint *num) {
 }
 
 void ub_print(ubint *num) {
-    uint64_t i;
+    uint8_t start = 0;
 
     if(num->sign)
         printf("-");
 
-    for(i = 0; i < num->length; i++) {
-        if(num->blocks[i] != 0)
-            break;
+    if(num->length == 1) {
+        printf("%x ", num->blocks[0]);
+        return;
     }
 
-    for(; i < num->length; i++) {
-        printf("%08x", num->blocks[i]);
+    for(uint64_t i = 0; i < num->length; i++) {
+        if(start == 0) {
+            if(num->blocks[i] != 0) {
+                start += 1;
+                printf("%x ", num->blocks[i]);
+            }
+        }
+        else {
+            printf("%08x ", num->blocks[i]);
+        }
     }
 }
