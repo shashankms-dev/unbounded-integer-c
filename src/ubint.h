@@ -42,7 +42,7 @@ ubint *ub_or(ubint *, ubint *);
 ubint *ub_not(ubint *);
 ubint *ub_xor(ubint *, ubint *);
 ubint *ub_xnor(ubint *, ubint *);
-ubint *ub_twos_compl(ubint *);
+ubint *ub_twos_complement(ubint *);
 
 
 // Functions to perform bitwise operations in place
@@ -51,6 +51,6 @@ void ub_dor(ubint *, ubint *);
 void ub_dnot(ubint *);
 void ub_dxor(ubint *, ubint *);
 void ub_dxnor(ubint *, ubint *);
-void ub_dtwos_compl(ubint *);
+void ub_dtwos_complement(ubint *);
 
 #endif
