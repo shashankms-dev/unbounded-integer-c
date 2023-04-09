@@ -1,21 +1,21 @@
 #include <stdint.h>
 #include "ubint.h"
 
-void ub_dand(ubint *num, ubint *mask) {
-    uint64_t iter1 = num->length;
-    uint64_t iter2 = mask->length;
+void ub_dand(ubint *num1, ubint *num2) {
+    uint64_t iter1 = num1->length;
+    uint64_t iter2 = num2->length;
 
     while(iter1 > 0 && iter2 > 0) {
-        num->blocks[--iter1] &= mask->blocks[--iter2];
+        num1->blocks[--iter1] &= num2->blocks[--iter2];
     }
 }
 
-void ub_dor(ubint *num, ubint *mask) {
-    uint64_t iter1 = num->length;
-    uint64_t iter2 = mask->length;
+void ub_dor(ubint *num1, ubint *num2) {
+    uint64_t iter1 = num1->length;
+    uint64_t iter2 = num2->length;
 
     while(iter1 > 0 && iter2 > 0) {
-        num->blocks[--iter1] |= mask->blocks[--iter2];
+        num1->blocks[--iter1] |= num2->blocks[--iter2];
     }
 }
 
@@ -39,16 +39,16 @@ void ub_dtwos_complement(ubint *num) {
     }
 }
 
-void ub_dxor(ubint *num, ubint *mask) {
-    uint64_t iter1 = num->length;
-    uint64_t iter2 = mask->length;
+void ub_dxor(ubint *num1, ubint *num2) {
+    uint64_t iter1 = num1->length;
+    uint64_t iter2 = num2->length;
 
     while(iter1 > 0 && iter2 > 0) {
-        num->blocks[--iter1] ^= mask->blocks[--iter2];
+        num1->blocks[--iter1] ^= num2->blocks[--iter2];
     }
 }
 
-void ub_dxnor(ubint *num, ubint *mask) {
-    ub_dxor(num, mask);
-    ub_dnot(num);
+void ub_dxnor(ubint *num1, ubint *num2) {
+    ub_dxor(num1, num2);
+    ub_dnot(num1);
 }
