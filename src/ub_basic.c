@@ -48,20 +48,14 @@ void ub_print(ubint *num) {
     if(num->sign)
         printf("-");
 
-    if(num->length == 1) {
-        printf("%x ", num->blocks[0]);
-        return;
-    }
-
     for(uint64_t i = 0; i < num->length; i++) {
-        if(start == 0) {
-            if(num->blocks[i] != 0) {
-                start += 1;
-                printf("%x ", num->blocks[i]);
-            }
-        }
-        else {
+        if(start == 1) {
             printf("%08x ", num->blocks[i]);
+        }
+        else if(num->blocks[i] != 0 || i == num->length - 1) {
+            start = 1;
+            printf("%x ", num->blocks[i]);
         }
     }
 }
+
