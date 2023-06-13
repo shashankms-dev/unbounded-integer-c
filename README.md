@@ -1,4 +1,4 @@
-# unbounded-integer
+# unbounded-integer-c
 C library for arbitrary sized integers
 
 The number is stored in an array as blocks of unsigned 32-bit integers.
