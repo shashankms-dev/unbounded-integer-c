@@ -14,6 +14,7 @@ typedef struct unbounded_integer {
 ubint *ub_create(uint8_t, uint64_t, ...);
 void ub_free(ubint *);
 ubint *ub_zero(void);
+ubint *ub_one(void);
 ubint *ub_clone(ubint *);
 void ub_print(ubint *);
 

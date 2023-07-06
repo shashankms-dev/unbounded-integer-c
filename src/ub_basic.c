@@ -30,6 +30,10 @@ ubint *ub_zero(void) {
     return ub_create(0, 1, 0x00000000);
 }
 
+ubint *ub_one(void) {
+    return ub_create(0, 1, 0x00000001);
+}
+
 ubint *ub_clone(ubint *num) {
     ubint *clone = malloc(sizeof(ubint));
     clone->sign = num->sign;
